@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Break</title>
+</head>
+<body>
+    <script>
+        var sep = console.log("-----------------------------");
+        const tab = [
+            [1, 2, 3],
+            [4, 5, 6]
+        ];
+
+        sep
+
+        let flag = false; //Initialisation du drapeau
+        for(let line of tab) {
+            for(let value of line) {
+            console.log(value);
+            if(value == 1) {
+                flag = true;
+                break;
+            }
+        }
+        if(flag) break;
+        console.log(line);
+        }
+
+        console.log(flag ? "J'ai trouvé la valeur" : "Valeur introuvable"); //Opérateur ternaire
+        //OU
+        /*
+        if(flag) {
+            console.log("J'ai trouvé la valeur\n");
+        } else {
+            console.log("Je n'ai pas trouvé la valeur\n");
+        }
+        */
+        
+        sep
+        
+        //Afficher les nombres pairs de 0 à 100 : une méthode avec continue
+        for(let i = 0; i < 101; i++) {
+            if(i % 2 == 1) {
+                continue;
+            }
+            console.log(i);
+        }
+
+    </script>
+</body>
+</html>

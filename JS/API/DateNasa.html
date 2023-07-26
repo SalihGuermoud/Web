@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image du jour de la NASA</title>
+  <link rel="stylesheet" href="./src/css/style.css">
+</head>
+<body>
+  <h1>Image du jour de la NASA</h1>
+  <input type="date" name="date" id="date">
+  <div id="out">
+    
+  </div>
+
+  <script>
+    document.getElementById("date").addEventListener("change", fetchNasa);
+
+    function fetchNasa() {
+      var selectedDate = document.getElementById("date").value;
+      var apiUrl = `https://api.nasa.gov/planetary/apod?date=${selectedDate}&api_key=NzYoHE1FkscIjzLIc74xoBifY9ldfrcBMCMzFtCs`;
+
+      fetch(apiUrl)
+        .then(resp => {
+          if (resp.ok) {
+            return resp.json();
+          } else {
+            throw new Error("Données non collectées");
+          }
+        })
+        .then(data => {
+          document.getElementById("out").innerHTML = `
+            <figure>
+              <img src="${data.url}" alt="${data.title}">
+              <figcaption>${data.explanation}</figcaption>
+            </figure>`;
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+
+    //OU
+    /*async function fetchJsonData(apiUrl) {
+        const resp = await fetch(apiUrl);
+        let data;
+        if(resp.ok)
+            data = await resp.json();
+        else
+        throw new Error("Données non-collectées");
+    }*/
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image du jour de la NASA - JSON</title>
+</head>
+<body>
+  <h1>Image du jour de la NASA - JSON</h1>
+  <pre id="output"></pre>
+
+  <script>
+    function displayJSON(data) {
+      var jsonString = JSON.stringify(data, null, 2);
+      var outputElement = document.getElementById("output");
+      outputElement.textContent = jsonString;
+    }
+
+    fetch("https://api.nasa.gov/planetary/apod?api_key=NzYoHE1FkscIjzLIc74xoBifY9ldfrcBMCMzFtCs")
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        displayJSON(data);
+      })
+      .catch(error => {
+        console.error("Une erreur s'est produite lors de la requête à l'API de la NASA.", error);
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debogage</title>
+</head>
+<body>
+    <script>
+        function f1(a) {
+            return f2(a);
+        }
+
+        function f2(a) {
+            b = 5;
+            return f3(b);
+        }
+
+        function f3(b) {
+            return b * a;
+        }
+
+        let a = 8;
+        console.log(f1(a));
+    </script>
+</body>
+</html>

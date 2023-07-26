@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion évènementielle</title>
+</head>
+<body>
+    <button>Click me!</button>
+    <input type="text">
+    <script>
+        const button = document.querySelector("button");
+        button.addEventListener("click", reponse2);
+        button.addEventListener("click", reponse);
+        button.removeEventListener("click", reponse); //Ne pas mettre de parenthèse dans la fonction reponse ici
+        button.addEventListener("click", function(evt) {
+            console.log(evt.target);
+            console.log(evt.srcElement);
+        });
+
+        const input = document.querySelector("input");
+        input.addEventListener("keydown", evt => {
+            console.log("appui sur une touche");
+        });
+
+        input.addEventListener("keyup", evt => {
+            console.log("touche relâchée");
+        });
+
+        input.addEventListener("keypress", evt => {
+            console.log("touche pressée");
+        });
+
+        input.addEventListener("keyup", (evt) => {
+            const content = evt.target.value;
+            console.log(content);
+        });
+    
+        function reponse() {
+            console.log("Hello world !");
+        }
+        function reponse2() {
+            console.log("I'm happy !");
+        }
+    </script>
+</body>
+</html>

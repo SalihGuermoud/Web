@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Fetch</title>
+</head>
+<body>
+    <h1>Image du jour de la NASA</h1>
+<div id="out"></div>
+
+    <script>
+        const uri = `https://api.nasa.gov/planetary/apod?api_key=NzYoHE1FkscIjzLIc74xoBifY9ldfrcBMCMzFtCs&date=${evt.target.value}`;
+        fetch(uri) //Promesse d'aller collecter les données à l'URI fournie
+        .then((parametre) => { //ici ma response nommée parametre permet d'extirper un txt(), un Json() ou un blob() (binaire)
+            if(parametre.ok) { //Les données collectées sont valides
+                return parametre.blob(); //Promesse d'extirper les données de la réponse
+            } else {
+                throw new Error(`Erreur données non collectées avec l'erreur ${parametre.status} : ${parametre.statusText}`);
+            }
+        })
+        .then((data) => {
+            const img = document.createElement("img");
+            img.src = URL.createObjectURL(data); //Créer la ressource image depuis le binaire
+            document.getElementById("out").appendChild(img);
+        })
+        .catch((err) => {
+            document.querySelector("#out").textContent = 
+            `Erreur : un problème réseau est survenu (${err}).`;
+        })
+
+    </script>
+</body>
+</html>

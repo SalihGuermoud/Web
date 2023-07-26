@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image du jour de la NASA</title>
+  <link rel="stylesheet" href="./src/css/style.css">
+</head>
+<body>
+  <h1>Image du jour de la NASA</h1>
+  <div id="out">
+    <img id="image" src="" alt="Image du jour">
+  </div>
+
+  <script>
+    //Clé API perso
+    const apiKey = "NzYoHE1FkscIjzLIc74xoBifY9ldfrcBMCMzFtCs";
+
+    const apiUrl = "https://api.nasa.gov/planetary/apod?api_key=" + apiKey;
+
+      var imageElement = document.getElementById("image");
+
+      fetch(apiUrl)
+        .then(function(reponse) {
+          return reponse.json();
+        })
+        .then(function(data) {
+          var imageUrl = data.url;
+          imageElement.src = imageUrl;
+        })
+        .catch(function(error) {
+          document.querySelector("#out").textContent = 
+            `Erreur : un problème réseau est survenu (${error}).`;
+        });
+
+  </script>
+</body>
+</html>

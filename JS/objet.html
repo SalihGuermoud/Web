@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les objets</title>
+</head>
+<body>
+    <script>
+        let chaine = "toto"; //déclaration littérale d'une chaine
+        let tab = [1, 2, 3]; //déclaration littérale d'un tableau
+        const obj = { //déclaration littérale d'un objet
+            nom : "Danlta",
+            prenom : "Alphonse",
+            presentation: function () {
+                return `Bonjour, je m'appelle ${this.prenom} ${this.nom}`;
+            }
+        }
+        
+        obj.ddn = "12/10/1999"; //Je rajoute un attribut à l'objet !!!
+        console.log(`Bonjour, je m'appelle ${obj.prenom} ${obj.nom}`);
+        console.log(`Je suis né le ${obj.ddn}`);
+        console.log(obj);
+    </script>
+</body>
+</html>

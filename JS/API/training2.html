@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training 2</title>
+</head>
+<body>
+    <h1>Image du jour de la NASA</h1>
+    <input type="date" name="date" id="date">
+    <div id="out"></div>
+    <script>
+        document.getElementById("date").addEventListener("change", fetchNasa);
+        function fetchNasa(evt) {
+            const uri = `https://api.nasa.gov/planetary/apod?api_key=NzYoHE1FkscIjzLIc74xoBifY9ldfrcBMCMzFtCs&date=${evt.target.value}`;
+        fetch(uri)
+        .then((resp) => {
+            if(resp.ok) {
+                return resp.json();
+            } else {
+                throw new Error (`Données non collectées avec l'erreur ${resp.status} : ${resp.statusText}`);
+            }
+        })
+        .then((data) => {
+            const out = document.getElementById("out");
+            out.innerHTML = `
+            <figure>
+             <div>
+                <img src="${data.url}" alt="${data.title}">
+            </div>   
+            <figcaption>${data.explanation}</figcaption>
+            </figure>`;
+        })
+
+        .catch((err) => {
+            throw new Error(`Un problème réseau est survenu (${err}).`);
+        })
+        }
+        
+    </script>
+</body>
+</html>
